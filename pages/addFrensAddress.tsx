@@ -8,7 +8,7 @@ import { ClusterEnvironment, IUser, MirrorWorld } from "@mirrorworld/web3.js"
 import  {useRouter}  from 'next/router';
 import { Divider, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput } from '@mui/material';
 
-function addFrensAddress() {
+function AddFrensAddress() {
 
     const user = useSelector((state: RootState) => state?.user);
     const router = useRouter();
@@ -39,10 +39,10 @@ function addFrensAddress() {
         <div className='p-6 shadow-xl'>
             <div className='flex items-center space-x-4 p-4 w-full' >
                 <ArrowBackIcon className='text-gray-500' onClick={() => router.back()} />
-                <span className='text-3xl font-bold'>Add Fren's Address</span>
+                <span className='text-3xl font-bold'>Add Frens Address</span>
             </div>
             <div className='my-6'>
-                <h1 className='text-lg mb-2'>My Fren's Account Information</h1>
+                <h1 className='text-lg mb-2'>My Frens Account Information</h1>
             </div>
             <Divider variant="middle" />
             <div className='flex flex-col'>
@@ -74,4 +74,4 @@ function addFrensAddress() {
     )
 }
 
-export default addFrensAddress
+export default AddFrensAddress
