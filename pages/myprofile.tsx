@@ -80,7 +80,7 @@ function Myprofile() {
                     <ArrowForwardIosIcon />
                 </div>
                 <div className='flex my-6 items-center justify-between'>
-                    <Link href={"/addFrensAddress"}>Add Fren's Address</Link>
+                    <Link href={"/addFrensAddress"}>Add Frens Address</Link>
                     <ArrowForwardIosIcon />
                 </div>
                 <div className='flex mt-6 mb-3 items-center justify-between'>
