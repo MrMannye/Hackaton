@@ -24,7 +24,7 @@ function Editprofile() {
                 <span className='text-3xl font-bold'>Edit Profile</span>
             </div>
             <div className='my-6'>
-                <h1 className='text-lg mb-2'>Account Information</h1>
+                <h1 className='text-lg mb-2'>My Account Information</h1>
             </div>
             <Divider variant="middle" />
             <div className='flex flex-col'>
