@@ -4,36 +4,47 @@ import { useSelector } from 'react-redux';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import QrCodeIcon from '@mui/icons-material/QrCode';
 import { ClusterEnvironment, IUser, MirrorWorld } from "@mirrorworld/web3.js"
+import { useMirrorWorld } from '@/hooks/useMirrorWorld';
 
 import  {useRouter}  from 'next/router';
 import { Divider, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput } from '@mui/material';
+interface InputElement extends HTMLInputElement {
+    value: string;
+}
+  
 
 function AddFrensAddress() {
 
     const user = useSelector((state: RootState) => state?.user);
     const router = useRouter();
+    const { mirrorworld } = useMirrorWorld();
+    var address: string;
+    const transfer = async () => {
+        const amount = 100 // Amount * Decimals
+        if (!mirrorworld) throw new Error("Mirror World SDK is not initialized")
+        console.log("Transfer" + address)
+        await mirrorworld.transferSOL({
+            recipientAddress:address,
+            amount,
+        }).then((result) => {
+            console.log(result); 
+            alert('Successful transaction! Signature of tx: ' + result["tx_signature"]);
+        })
+        .catch((error) => {
+            console.error(error);
+            alert('Falló transacción');
+        });
+    }
 
     async function save(){
+        const myInputElement = document.getElementById("myInput") as InputElement;
+        const inputValue = myInputElement.value;
+
         console.log("save")
+        address = inputValue
+        console.log(address)
     }
 
-    const recipientAddress = "7icXZr9isqt63QNmotLmSmvaq1iHM6YNswRos8ATwTQh"
-    const amount = 1000000000 // Amount * Decimals
-    const mirrorWorld = new MirrorWorld({
-        apiKey: "mw_EQhbJbLVBaIwuQiXjemZhmIAJGqgFnWRIkI",
-        env: ClusterEnvironment.testnet,
-    })
-
-    async function transfer(){
-        console.log("Transfer")
-        const transactionResult = await mirrorWorld.transferSOL({
-            recipientAddress,
-            amount,
-        })
-        console.log(transactionResult)
-        
-        return transactionResult;
-    }
 
     return (
         <div className='p-6 shadow-xl'>
@@ -49,7 +60,7 @@ function AddFrensAddress() {
                 <FormControl sx={{ m: 1, width: '40ch' }} variant="outlined">
                     <InputLabel htmlFor="outlined-adornment-password">Solana Wallet Address</InputLabel>
                     <OutlinedInput 
-                        id="outlined-adornment-password"
+                        id="myInput"
                         className='text-black'
                         type="text"
                         startAdornment={
@@ -65,8 +76,8 @@ function AddFrensAddress() {
                         label="Solana Wallet Address"
                     />
                 </FormControl>
-                <button onClick={save} className='shadow-xl font-semibold text-lg rounded-lg py-5 px-12'>Update Address</button>
-                <button onClick={transfer} className='shadow-xl font-semibold text-lg rounded-lg py-5 px-12'>Transfer</button>
+                <button onClick={save} className='shadow-xl font-semibold text-lg rounded-lg py-5 px-12'>Confirm Address</button>
+                <button onClick={() => transfer()} className='shadow-xl font-semibold text-lg rounded-lg py-5 px-12'>Transfer</button>
             </div>
 
         </div>

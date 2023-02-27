@@ -32,6 +32,7 @@ function Mytaks() {
       .then(response => response.json())
       .then(data => setTasks(data));
   }, [])
+
   return (
     <div className='h-screen relative w-screen'>
       <h1 className=' text-4xl p-4 py-5 text-white font-bold bg-[#FC7823]'>MyTasks</h1>

@@ -13,6 +13,7 @@ import { useRouter } from "next/router";
 export interface IMirrorWorldContext {
   user?: IUser,
   mirrorworld?: MirrorWorld,
+  //transferSol(): Promise<void>,
   login(): Promise<void>
 }
 
@@ -43,11 +44,23 @@ export const MirrorWorldProvider = ({ children }: { children: ReactNode }) => {
     }
   }
   
+  /*const recipientAddress = "7icXZr9isqt63QNmotLmSmvaq1iHM6YNswRos8ATwTQh"
+  const amount = 100 // Amount * Decimals
+  async function transferSol(){
+    if (!mirrorworld) throw new Error("Mirror World SDK is not initialized")
+    console.log("Transfer")
+    const transactionResult = await mirrorworld.transferSOL({
+        recipientAddress,
+        amount,
+    })
+    console.log(transactionResult) 
+  }*/
+
   function initialize () {
     const refreshToken = localStorage.getItem(storageKey)
     console.log("refreshToken", refreshToken)
     const instance = new MirrorWorld({
-      apiKey: "mw_EQhbJbLVBaIwuQiXjemZhmIAJGqgFnWRIkI",
+      apiKey: "mw_4hkxDYKEq1oSPO81ImMCRk15CamjT0EKkEj",
       env: ClusterEnvironment.testnet,
       ...refreshToken && { autoLoginCredentials: refreshToken }
     })
@@ -79,6 +92,7 @@ export const MirrorWorldProvider = ({ children }: { children: ReactNode }) => {
     <MirrorWorldContext.Provider value={{
       mirrorworld,
       user,
+      //transferSol,
       login
     }}>
       {children}
