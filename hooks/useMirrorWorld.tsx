@@ -36,12 +36,12 @@ export const MirrorWorldProvider = ({ children }: { children: ReactNode }) => {
       router.push("/mytasks")
     }
   }
-  
+
   function initialize () {
     const refreshToken = localStorage.getItem(storageKey)
     console.log("refreshToken", refreshToken)
     const instance = new MirrorWorld({
-      apiKey: "mw_EQhbJbLVBaIwuQiXjemZhmIAJGqgFnWRIkI",
+      apiKey: "mw_4hkxDYKEq1oSPO81ImMCRk15CamjT0EKkEj",
       env: ClusterEnvironment.testnet,
       ...refreshToken && { autoLoginCredentials: refreshToken }
     })
