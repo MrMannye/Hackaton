@@ -80,6 +80,14 @@ function AddFrensAddress() {
                 <button onClick={() => transfer()} className='shadow-xl font-semibold text-lg rounded-lg py-5 px-12'>Transfer</button>
             </div>
 
+            <div className='flex flex-col'>
+                <br></br>
+                <span style={{ color: '#FC7823' }} className='text-1xl font-semibold'> Remember that your Frens account is where the penalizations are transfered </span>
+                <span style={{ color: '#FC7823' }} className='text 1xl font-thin'> 1 - Enter your Frens Address </span>
+                <span style={{ color: '#FC7823' }} className='text 1xl font-thin'> 2 - Click on Confirm Address </span>
+                <span style={{ color: '#FC7823' }} className='text-1xl font-thin'> 3 - Click on Transfer </span>
+            </div>
+
         </div>
 
     )
