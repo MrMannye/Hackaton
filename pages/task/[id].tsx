@@ -53,7 +53,7 @@ export default function Task() {
         <Divider variant="middle" />
         <div className='flex flex-col'>
             <h2>{task?.task_date.toString()}</h2>
-            <span className='text-2xl mb-2 font-bold'>{task?.user_publickey?.slice(0,10)}... <span className='text-[#42BEA5]'>{[task_name]}</span></span>
+            <span className='text-2xl mb-2 font-bold'>{task?.user_publickey?.slice(0,10)}... <span className='text-[#545454]'>{[task_name]}</span></span>
             <button onClick={() => completeTask()} className='py-4 w-80 shadow-xl self-center bg-[#FC7823] rounded-lg text-white font-semibold mt-5'>Mark As Complete</button>
         </div>
     </div>

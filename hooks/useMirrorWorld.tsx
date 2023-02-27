@@ -1,9 +1,3 @@
-/**
- * Return
- * - user
- * - mirrorworld
- * - login function
- */
 import {ReactNode, createContext, useContext, useState, useEffect, useRef} from "react";
 import {ClusterEnvironment, IUser, MirrorWorld} from "@mirrorworld/web3.js";
 import { useDispatch } from "react-redux";
@@ -13,7 +7,7 @@ import { useRouter } from "next/router";
 export interface IMirrorWorldContext {
   user?: IUser,
   mirrorworld?: MirrorWorld,
-  login(): Promise<void>
+  login(): Promise<void>,
 }
 
 const MirrorWorldContext = createContext<IMirrorWorldContext>({} as IMirrorWorldContext)

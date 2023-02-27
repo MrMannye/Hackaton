@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import type { RootState } from '../store/store'
 import { useRouter } from 'next/router';
 import NavBar from '@/components/NavBar';
 import Link from 'next/link';
-
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { FormControlLabel, styled, Switch } from '@mui/material';
-
+import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+import { useMirrorWorld } from '@/hooks/useMirrorWorld';
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     width: 62,
@@ -58,8 +58,30 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 
 function Myprofile() {
 
+    const { mirrorworld } = useMirrorWorld();
     const user = useSelector((state: RootState) => state?.user);
     const router = useRouter();
+    var amount = 0;
+
+    const [text, setText] = useState("******");
+    
+    function changeText() {
+        setText(amount.toString());
+    }
+
+    const gettokens = async () => {
+        if (!mirrorworld) throw new Error("Mirror World SDK is not initialized")
+        await mirrorworld.getTokens().then((tokens) => {
+            amount = tokens["sol"];
+            console.log(amount); 
+        })
+        .catch((error) => {
+            console.error(error);
+            alert('No se obtuvieron los tokens');
+        });
+
+        changeText();
+    }
     
     const logOut = () => {
         router.push("/");
@@ -68,11 +90,18 @@ function Myprofile() {
         console.log(user);
         if (user.wallet?.sol_address === "") router.push("/");
     }, [])
+    
     return (
         <div className='flex flex-col items-start w-screen'>
             <div className='p-4 py-5 text-white bg-[#FC7823] w-full'>
                 <h1 className='text-4xl font-bold'>Welcome</h1>
                 <span className='text-lg'>{user.username}</span>
+                <p className=' text-1xl pl-4 pb-2 pt-2 text-white font-medium bg-[#545454]'> 
+                    <button onClick={() => gettokens()}>
+                    <RemoveRedEyeIcon/>
+                    </button> 
+                    <span>  My $SOL Balance:   <span>{text}</span></span>
+                </p>
             </div>
             <div className='p-4 w-full shadow-xl'>
                 <div className='flex my-6 items-center justify-between'>

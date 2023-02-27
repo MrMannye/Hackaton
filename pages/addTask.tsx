@@ -39,6 +39,7 @@ function AddTask() {
     const handleChangeName = (e: { target: { value: React.SetStateAction<string>; }; }) => {
         setNameActivity(e.target.value);
     }
+    
     const handleChangeDescription = (e: { target: { value: React.SetStateAction<string>; }; }) => {
         setDescription(e.target.value);
     }
